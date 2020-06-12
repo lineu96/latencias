@@ -42,7 +42,32 @@ knitr::opts_chunk$set(echo = TRUE, cache = FALSE,fig.align='center', fig.width=5
 # Medidas de posição
 
 <center>
-```{r,echo=FALSE}
+```{r,echo=FALSE, warning=FALSE, message=FALSE}
+#--------------------------------------------------------------
+setwd("~/Área de Trabalho/Tissei")
+#--------------------------------------------------------------
+
+library(tidyverse)
+library(gridExtra)
+library(ggpubr)
+
+source('funcoes.R')
+
+#--------------------------------------------------------------
+
+# DADOS
+#--------------------------------------------------------------
+
+dados <- read.csv2('tissei.csv', header = T, sep = ',')
+
+#str(dados)
+
+names(dados) <- c('n', 'inst', 'lock', 'set_rex', 'segment',
+                  'mem_xchg', 'p0156', 'p06', 'p23', 'p237', 
+                  'p4', 'p1', 'p15', 'p015', 'p5', 'p0', 
+                  'p05', 'p01', 'p6', 'min_lat', 'max_lat')
+
+
 # Medidas de posição
 m_p0156 <- posic(dados$p0156)
 m_p06 <- posic(dados$p06)     

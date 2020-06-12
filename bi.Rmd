@@ -27,6 +27,31 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, cache = FALSE,fig.align='center', fig.width=5, fig.height=5)
 
+#--------------------------------------------------------------
+setwd("~/Área de Trabalho/Tissei")
+#--------------------------------------------------------------
+
+library(tidyverse)
+library(gridExtra)
+library(ggpubr)
+
+source('funcoes.R')
+
+#--------------------------------------------------------------
+
+# DADOS
+#--------------------------------------------------------------
+
+dados <- read.csv2('tissei.csv', header = T, sep = ',')
+
+#str(dados)
+
+names(dados) <- c('n', 'inst', 'lock', 'set_rex', 'segment',
+                  'mem_xchg', 'p0156', 'p06', 'p23', 'p237', 
+                  'p4', 'p1', 'p15', 'p015', 'p5', 'p0', 
+                  'p05', 'p01', 'p6', 'min_lat', 'max_lat')
+
+
 ```
 
 ---
