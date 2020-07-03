@@ -1,14 +1,6 @@
 ---
-title: ""
+title: "Análise latências"
 ---
-
----
-
-<center>
-<font size="6"> 
-<p align=”center”> <b> Análise latências </b> </center>
-</font>
-</center>
 
 ---
 
@@ -20,9 +12,9 @@ title: ""
 
  - Ao todo existem 2700 macroinstruções.
 
-  - Não sabemos o que é feito na micro.
+ - Não sabemos o que é feito na micro.
 
-  - As micro são destinadas para portas que podem ter uma ou mais unidades de execução (a mesma porta pode ser capaz de realizar mais de um tipo de tarefa), e unidades de execução diferentes podem realizar a mesma tarefa.
+ - As micro são destinadas para portas que podem ter uma ou mais unidades de execução (a mesma porta pode ser capaz de realizar mais de um tipo de tarefa), e unidades de execução diferentes podem realizar a mesma tarefa.
 
  - Macro gera micros, micros são executadas em diferentes lugares.
 
@@ -78,7 +70,6 @@ Respostas (latências):
 
 - Min Latency.
 - Max Latency.
-
 
 ---
 

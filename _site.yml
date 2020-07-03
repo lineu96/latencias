@@ -12,48 +12,19 @@ navbar:
       icon: fa-home
       href: index.html
       
-    - text: "Tabelas"
-      icon: fa-table
-      menu:
+    - text: "Análise Base 1"
+      icon: fa-bar-chart
+      href: base1.html
         
-        - text: "---------"
-        - text: "Tabelas de frequência"
-          icon: fa-arrow-right
-          href: freq.html
-        - text: "---------"   
+    - text: "Análise Base 2"
+      icon: fa-bar-chart
+      href: base2.html
 
-        - text: "Medidas de posição e dispersão"
-          icon: fa-arrow-right
-          href: pos.html
-        - text: "---------"   
+    - text: "Reanálise Base 2"
+      icon: fa-bar-chart
+      href: base2_reanalise.html
 
-    - text: "Gráficos"
-      icon: fa-pie-chart
-      menu:
-        - text: "---------"
-        - text: "Análise univariada"
-          icon: fa-arrow-right
-          href: uni.html
-        - text: "---------"   
 
-        - text: "Análise bivariada"
-        - text: "---------"   
-        - text: "Dados completos"   
-          icon: fa-arrow-right
-          href: bi.html
-        
-        - text: "---------"   
-        
-        - text: "Restringindo latência"   
-          icon: fa-arrow-right
-          href: bi2.html
-        - text: "---------"   
-
-    - text: "Considerações finais"
-      icon: fa-bars
-      href: conc.html
-
-  
   right:
     - text: "Lineu A.C.F"
       icon: fa-user 
