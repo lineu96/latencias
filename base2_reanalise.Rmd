@@ -53,9 +53,9 @@ Ainda com base numa análise inicial, foi constatado que a massa de latências e
 
 Com isto foram geradas duas bases: 
 
- - A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 21 para mínima ou de 40 para máxima. Esta contém 7 casos.
+ - A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 21 para mínima ou de 40 para máxima. Esta contém 13 casos.
  
- - A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 20 e máxima abaixo de 40. Esta contém 1070 casos.
+ - A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 20 e máxima abaixo de 40. Esta contém 1562 casos.
 
 ---
 
@@ -68,7 +68,7 @@ library(tidyverse)
 #---------------------------------------------------------------
 
 # Leitura
-dados <- read.csv2('latencias_2.csv', header = T, sep = ',')
+dados <- read.csv2('latencias_2_NOVA.csv', header = T, sep = ',')
 
 #---------------------------------------------------------------
 
@@ -86,8 +86,7 @@ dados$p015 <- as.factor(ifelse(dados$p015 > 0, 1,0))
 dados$p5 <- as.factor(ifelse(dados$p5 > 0, 1,0))
 dados$p0 <- as.factor(ifelse(dados$p0 > 0, 1,0))
 dados$p01 <- as.factor(ifelse(dados$p01 > 0, 1,0))
-
-dados$p237 <- as.factor(dados$p237)
+dados$p237 <- as.factor(ifelse(dados$p237 > 0, 1,0))
 
 
 #---------------------------------------------------------------
@@ -106,7 +105,7 @@ analista <- subset(dados, !(dados$n %in% indices))
 options(width=80)
 
 DT::datatable(analista, rownames = FALSE,
-              options = list(pageLength = 12
+              options = list(pageLength = 13
                              ))
 
 
@@ -114,7 +113,7 @@ DT::datatable(analista, rownames = FALSE,
 
 ---
 
-As seções seguintes referem-se à análise exploratória da base maior, que continha 1070 observações.
+As seções seguintes referem-se à análise exploratória da base maior, que continha 1562 observações.
 
 ---
 

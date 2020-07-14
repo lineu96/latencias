@@ -49,9 +49,9 @@ Com base numa análise inicial, foi constatado que a massa de latências está e
 
 Com isto foram geradas duas bases: 
 
- - A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 21 para mínima ou de 40 para máxima. Esta contém 7 casos.
+ - A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 21 para mínima ou de 40 para máxima. Esta contém 13 casos.
  
- - A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 20 e máxima abaixo de 40. Esta contém 1070 casos.
+ - A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 20 e máxima abaixo de 40. Esta contém 1562 casos.
 
 ---
 
@@ -64,7 +64,7 @@ library(tidyverse)
 #---------------------------------------------------------------
 
 # Leitura
-dados <- read.csv2('latencias_2.csv', header = T, sep = ',')
+dados <- read.csv2('latencias_2_NOVA.csv', header = T, sep = ',')
 
 #---------------------------------------------------------------
 
@@ -90,7 +90,7 @@ DT::datatable(analista, rownames = FALSE,
 
 ---
 
-As seções seguintes referem-se à análise exploratória da base maior, que continha 1070 observações.
+As seções seguintes referem-se à análise exploratória da base maior, que continha 1562 observações.
 
 ---
 
