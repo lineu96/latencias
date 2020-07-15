@@ -360,13 +360,6 @@ div.tocify {
     Análise Base 2
   </a>
 </li>
-<li>
-  <a href="base2_reanalise.html">
-    <span class="fa fa-bar-chart"></span>
-     
-    Reanálise Base 2
-  </a>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -414,19 +407,22 @@ div.tocify {
 <hr />
 <div id="limpeza" class="section level1">
 <h1><span class="header-section-number">1</span> Limpeza</h1>
-<p>Com base numa análise inicial, foi constatado que a massa de latências está entre 0 e 21 para a mínima e 0 e 30 para a máxima, valores fora desses intervalos são poucos e extremos e cabe a um analista avaliar estes casos.</p>
+<p>Numa primeira análise optamos pela remoção das portas 0156, 06, 237, 1, 15, 05, 6 devido à alta proporção de zeros, isto é, neste conjunto de dados estas portas foram poucas vezes usadas.</p>
+<p>As portas 23, 4, 015, 5, 0, 01 foram analisadas como binárias (foi ou não usada).</p>
+<hr />
+<p>Ainda com base numa análise inicial, foi constatado que a massa de latências está entre 0 e 15 para a mínima e 0 e 24 para a máxima, valores fora desses intervalos são poucos e extremos e cabe a um analista avaliar estes casos.</p>
 <hr />
 <p>Com isto foram geradas duas bases:</p>
 <ul>
-<li><p>A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 21 para mínima ou de 40 para máxima. Esta contém 13 casos.</p></li>
-<li><p>A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 20 e máxima abaixo de 40. Esta contém 1562 casos.</p></li>
+<li><p>A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 15 para mínima ou de 24 para máxima. Esta contém 28 casos.</p></li>
+<li><p>A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 15 e máxima abaixo de 24. Esta contém 1547 casos.</p></li>
 </ul>
 <hr />
 <p>Base para análise manual:</p>
-<div id="htmlwidget-60144ae7133bb4b6a90b" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-60144ae7133bb4b6a90b">{"x":{"filter":"none","data":[[121,122,187,188,189,190,191,856,857,858,859,860,861],["FXSAVE64","FXSAVE","MOVNTDQ","MOVNTI","MOVNTI","MOVNTPD","MOVNTPS","VMOVNTDQ","VMOVNTDQ","VMOVNTPD","VMOVNTPD","VMOVNTPS","VMOVNTPS"],[0,0,0,0,0,0,0,0,0,0,0,0,0],[18,19,0,0,0,0,0,0,0,0,0,0,0],[37,37,0,1,1,0,0,0,0,0,0,0,0],[3,0,1,0,0,1,1,1,1,1,1,1,1],[38,38,1,1,1,1,1,1,1,1,1,1,1],[12,12,0,0,0,0,0,0,0,0,0,0,0],[1,2,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0],[12,12,0,0,0,0,0,0,0,0,0,0,0],[11,10,0,0,0,0,0,0,0,0,0,0,0],[2,3,0,0,0,0,0,0,0,0,0,0,0],[1,2,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0],[46,45,344,344,344,339,338,329,329,329,329,329,329],[46,45,345,346,345,340,340,330,330,330,330,330,330],[0,0,0,0,0,0,0,0,17572468,0,0,0,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>n<\/th>\n      <th>inst<\/th>\n      <th>p0156<\/th>\n      <th>p06<\/th>\n      <th>p23<\/th>\n      <th>p237<\/th>\n      <th>p4<\/th>\n      <th>p1<\/th>\n      <th>p15<\/th>\n      <th>p015<\/th>\n      <th>p5<\/th>\n      <th>p0<\/th>\n      <th>p05<\/th>\n      <th>p01<\/th>\n      <th>p6<\/th>\n      <th>min_lat<\/th>\n      <th>max_lat<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":12,"columnDefs":[{"className":"dt-right","targets":[0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,12,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c7e40b57ba0917d8bc17" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c7e40b57ba0917d8bc17">{"x":{"filter":"none","data":[[121,122,187,188,189,190,191,295,297,311,546,548,550,552,856,857,858,859,860,861,1050,1052,1074,1510,1512,1514,1516,1518],["FXSAVE64_MEMmfpxenv+M4096","FXSAVE_MEMmfpxenv+M4096","MOVNTDQ_MEMdq_XMMdq+M128+R128","MOVNTI_MEMd_GPR32+M32+R32","MOVNTI_MEMq_GPR64+M64+R64","MOVNTPD_MEMdq_XMMpd+M128+R128","MOVNTPS_MEMdq_XMMps+M128+R128","PCMPESTRI64_XMMdq_MEMdq_IMMb+R128+M128+I8","PCMPESTRI_XMMdq_MEMdq_IMMb+R128+M128+I8","PCMPISTRI_XMMdq_MEMdq_IMMb+R128+M128+I8","SQRTPD_XMMpd_MEMpd+R128+M128","SQRTPS_XMMps_MEMps+R128+M128","SQRTSD_XMMsd_MEMsd+R64+M64","SQRTSS_XMMss_MEMss+R32+M32","VMOVNTDQ_MEMdq_XMMdq+M128+R128","VMOVNTDQ_MEMqq_YMMqq+M256+R256","VMOVNTPD_MEMdq_XMMdq+M128+R128","VMOVNTPD_MEMqq_YMMqq+M256+R256","VMOVNTPS_MEMdq_XMMdq+M128+R128","VMOVNTPS_MEMqq_YMMqq+M256+R256","VPCMPESTRI64_XMMdq_MEMdq_IMMb+R128+M128+I8","VPCMPESTRI_XMMdq_MEMdq_IMMb+R128+M128+I8","VPCMPISTRI_XMMdq_MEMdq_IMMb+R128+M128+I8","VSQRTPD_XMMdq_MEMdq+R128+M128","VSQRTPD_YMMqq_MEMqq+R256+M256","VSQRTPS_XMMdq_MEMdq+R128+M128","VSQRTPS_YMMqq_MEMqq+R256+M256","VSQRTSD_XMMdq_XMMdq_MEMq+R128+R128+M64"],["FXSAVE64","FXSAVE","MOVNTDQ","MOVNTI","MOVNTI","MOVNTPD","MOVNTPS","PCMPESTRI64","PCMPESTRI","PCMPISTRI","SQRTPD","SQRTPS","SQRTSD","SQRTSS","VMOVNTDQ","VMOVNTDQ","VMOVNTPD","VMOVNTPD","VMOVNTPS","VMOVNTPS","VPCMPESTRI64","VPCMPESTRI","VPCMPISTRI","VSQRTPD","VSQRTPD","VSQRTPS","VSQRTPS","VSQRTSD"],["SSE","SSE","SSE2","SSE2","SSE2","SSE2","SSE","SSE4","SSE4","SSE4","SSE2","SSE","SSE2","SSE","AVX","AVX","AVX","AVX","AVX","AVX","AVX","AVX","AVX","AVX","AVX","AVX","AVX","AVX"],["M4096","M4096","M128","M32","M64","M128","M128","XMM","XMM","XMM","XMM","XMM","XMM","XMM","M128","M256","M128","M256","M128","M256","XMM","XMM","XMM","XMM","YMM","XMM","YMM","XMM"],["","","XMM","R32","R64","XMM","XMM","M128","M128","M128","M128","M128","M64","M32","XMM","YMM","XMM","YMM","XMM","YMM","M128","M128","M128","M128","M256","M128","M256","XMM"],["","","","","","","","I8","I8","I8","","","","","","","","","","","I8","I8","I8","","","","","M64"],["","","","","","","","","","","","","","","","","","","","","","","","","","","",""],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[18,19,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0],["1","1","0","1","1","0","0","1","1","1","1","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1"],["1","0","1","0","0","1","1","0","0","0","0","0","0","0","1","1","1","1","1","1","0","0","0","0","0","0","0","0"],["1","1","1","1","1","1","1","0","0","0","0","0","0","0","1","1","1","1","1","1","0","0","0","0","0","0","0","0"],[12,12,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0],[1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],["1","1","0","0","0","0","0","1","1","0","0","0","0","0","0","0","0","0","0","0","1","1","0","0","0","0","0","0"],["1","1","0","0","0","0","0","1","1","1","1","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1"],[2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],["1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[46,45,344,344,344,339,338,11,11,11,20,19,20,19,329,329,329,329,329,329,11,11,11,20,21,19,20,13],[46,45,345,346,345,340,340,26,26,26,25,19,25,19,330,330,330,330,330,330,25,25,29,25,26,19,20,25],[0,0,0,0,0,0,0,0,0,24654,0,0,0,0,0,17572468,0,0,0,0,0,0,0,0,0,0,0,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>n<\/th>\n      <th>code<\/th>\n      <th>inst<\/th>\n      <th>extension<\/th>\n      <th>op0<\/th>\n      <th>op1<\/th>\n      <th>op2<\/th>\n      <th>op3<\/th>\n      <th>p0156<\/th>\n      <th>p06<\/th>\n      <th>p23<\/th>\n      <th>p237<\/th>\n      <th>p4<\/th>\n      <th>p1<\/th>\n      <th>p15<\/th>\n      <th>p015<\/th>\n      <th>p5<\/th>\n      <th>p0<\/th>\n      <th>p05<\/th>\n      <th>p01<\/th>\n      <th>p6<\/th>\n      <th>min_lat<\/th>\n      <th>max_lat<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":28,"columnDefs":[{"className":"dt-right","targets":[0,8,9,13,14,18,20,21,22,23]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,25,28,50,100]}},"evals":[],"jsHooks":[]}</script>
 <hr />
-<p>As seções seguintes referem-se à análise exploratória da base maior, que continha 1562 observações.</p>
+<p>As seções seguintes referem-se à análise exploratória da base maior, que continha 1547 observações.</p>
 <hr />
 </div>
 <div id="analise-univariada" class="section level1">
@@ -437,68 +433,8 @@ div.tocify {
 <h2><span class="header-section-number">2.1</span> Tabelas de frequência</h2>
 <p>Frequência absoluta e relativa de cada nível referente a cada uma das variáveis disponíveis.</p>
 <hr />
-<hr />
-<div id="p0156" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> p0156</h3>
-<center>
-<table style="width:44%;">
-<colgroup>
-<col width="12%" />
-<col width="9%" />
-<col width="22%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">Freq</th>
-<th align="center">Freq_relativa</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">1562</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p06" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> p06</h3>
-<center>
-<table style="width:44%;">
-<colgroup>
-<col width="12%" />
-<col width="9%" />
-<col width="22%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">Freq</th>
-<th align="center">Freq_relativa</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">1539</td>
-<td align="center">0.985</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">23</td>
-<td align="center">0.015</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
 <div id="p23" class="section level3">
-<h3><span class="header-section-number">2.1.3</span> p23</h3>
+<h3><span class="header-section-number">2.1.1</span> p23</h3>
 <center>
 <table style="width:44%;">
 <colgroup>
@@ -517,59 +453,12 @@ div.tocify {
 <tr class="odd">
 <td align="center">0</td>
 <td align="center">822</td>
-<td align="center">0.526</td>
+<td align="center">0.531</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">722</td>
-<td align="center">0.462</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">6</td>
-<td align="center">0.004</td>
-</tr>
-<tr class="even">
-<td align="center">4</td>
-<td align="center">10</td>
-<td align="center">0.006</td>
-</tr>
-<tr class="odd">
-<td align="center">8</td>
-<td align="center">2</td>
-<td align="center">0.001</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p237" class="section level3">
-<h3><span class="header-section-number">2.1.4</span> p237</h3>
-<center>
-<table style="width:44%;">
-<colgroup>
-<col width="12%" />
-<col width="9%" />
-<col width="22%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">Freq</th>
-<th align="center">Freq_relativa</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">1516</td>
-<td align="center">0.971</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">46</td>
-<td align="center">0.029</td>
+<td align="center">725</td>
+<td align="center">0.469</td>
 </tr>
 </tbody>
 </table>
@@ -577,7 +466,7 @@ div.tocify {
 <hr />
 </div>
 <div id="p4" class="section level3">
-<h3><span class="header-section-number">2.1.5</span> p4</h3>
+<h3><span class="header-section-number">2.1.2</span> p4</h3>
 <center>
 <table style="width:44%;">
 <colgroup>
@@ -595,77 +484,13 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">1504</td>
+<td align="center">1489</td>
 <td align="center">0.963</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">56</td>
-<td align="center">0.036</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">2</td>
-<td align="center">0.001</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p1" class="section level3">
-<h3><span class="header-section-number">2.1.6</span> p1</h3>
-<center>
-<table style="width:44%;">
-<colgroup>
-<col width="12%" />
-<col width="9%" />
-<col width="22%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">Freq</th>
-<th align="center">Freq_relativa</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">1529</td>
-<td align="center">0.979</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">33</td>
-<td align="center">0.021</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p15" class="section level3">
-<h3><span class="header-section-number">2.1.7</span> p15</h3>
-<center>
-<table style="width:44%;">
-<colgroup>
-<col width="12%" />
-<col width="9%" />
-<col width="22%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">Freq</th>
-<th align="center">Freq_relativa</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">1562</td>
-<td align="center">1</td>
+<td align="center">58</td>
+<td align="center">0.037</td>
 </tr>
 </tbody>
 </table>
@@ -673,7 +498,7 @@ div.tocify {
 <hr />
 </div>
 <div id="p015" class="section level3">
-<h3><span class="header-section-number">2.1.8</span> p015</h3>
+<h3><span class="header-section-number">2.1.3</span> p015</h3>
 <center>
 <table style="width:44%;">
 <colgroup>
@@ -691,18 +516,13 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">1350</td>
-<td align="center">0.864</td>
+<td align="center">1335</td>
+<td align="center">0.863</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">200</td>
-<td align="center">0.128</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">12</td>
-<td align="center">0.008</td>
+<td align="center">212</td>
+<td align="center">0.137</td>
 </tr>
 </tbody>
 </table>
@@ -710,7 +530,7 @@ div.tocify {
 <hr />
 </div>
 <div id="p5" class="section level3">
-<h3><span class="header-section-number">2.1.9</span> p5</h3>
+<h3><span class="header-section-number">2.1.4</span> p5</h3>
 <center>
 <table style="width:44%;">
 <colgroup>
@@ -728,28 +548,13 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">998</td>
-<td align="center">0.639</td>
+<td align="center">987</td>
+<td align="center">0.638</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">458</td>
-<td align="center">0.293</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">94</td>
-<td align="center">0.06</td>
-</tr>
-<tr class="even">
-<td align="center">3</td>
-<td align="center">8</td>
-<td align="center">0.005</td>
-</tr>
-<tr class="odd">
-<td align="center">4</td>
-<td align="center">4</td>
-<td align="center">0.003</td>
+<td align="center">560</td>
+<td align="center">0.362</td>
 </tr>
 </tbody>
 </table>
@@ -757,7 +562,7 @@ div.tocify {
 <hr />
 </div>
 <div id="p0" class="section level3">
-<h3><span class="header-section-number">2.1.10</span> p0</h3>
+<h3><span class="header-section-number">2.1.5</span> p0</h3>
 <center>
 <table style="width:44%;">
 <colgroup>
@@ -776,49 +581,12 @@ div.tocify {
 <tr class="odd">
 <td align="center">0</td>
 <td align="center">1331</td>
-<td align="center">0.852</td>
+<td align="center">0.86</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">207</td>
-<td align="center">0.133</td>
-</tr>
-<tr class="odd">
-<td align="center">3</td>
-<td align="center">24</td>
-<td align="center">0.015</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p05" class="section level3">
-<h3><span class="header-section-number">2.1.11</span> p05</h3>
-<center>
-<table style="width:44%;">
-<colgroup>
-<col width="12%" />
-<col width="9%" />
-<col width="22%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">Freq</th>
-<th align="center">Freq_relativa</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">1549</td>
-<td align="center">0.992</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">13</td>
-<td align="center">0.008</td>
+<td align="center">216</td>
+<td align="center">0.14</td>
 </tr>
 </tbody>
 </table>
@@ -826,7 +594,7 @@ div.tocify {
 <hr />
 </div>
 <div id="p01" class="section level3">
-<h3><span class="header-section-number">2.1.12</span> p01</h3>
+<h3><span class="header-section-number">2.1.6</span> p01</h3>
 <center>
 <table style="width:44%;">
 <colgroup>
@@ -844,50 +612,13 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">896</td>
-<td align="center">0.574</td>
+<td align="center">881</td>
+<td align="center">0.569</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">630</td>
-<td align="center">0.403</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">30</td>
-<td align="center">0.019</td>
-</tr>
-<tr class="even">
-<td align="center">3</td>
-<td align="center">6</td>
-<td align="center">0.004</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p6" class="section level3">
-<h3><span class="header-section-number">2.1.13</span> p6</h3>
-<center>
-<table style="width:44%;">
-<colgroup>
-<col width="12%" />
-<col width="9%" />
-<col width="22%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">Freq</th>
-<th align="center">Freq_relativa</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">1562</td>
-<td align="center">1</td>
+<td align="center">666</td>
+<td align="center">0.431</td>
 </tr>
 </tbody>
 </table>
@@ -895,7 +626,7 @@ div.tocify {
 <hr />
 </div>
 <div id="latencia-minima" class="section level3">
-<h3><span class="header-section-number">2.1.14</span> Latência mínima</h3>
+<h3><span class="header-section-number">2.1.7</span> Latência mínima</h3>
 <center>
 <table style="width:46%;">
 <colgroup>
@@ -912,59 +643,69 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">[0,2]</td>
-<td align="center">756</td>
-<td align="center">0.484</td>
+<td align="center">[0,1]</td>
+<td align="center">747</td>
+<td align="center">0.483</td>
 </tr>
 <tr class="even">
-<td align="center">(2,4]</td>
-<td align="center">400</td>
-<td align="center">0.256</td>
+<td align="center">(1,2]</td>
+<td align="center">9</td>
+<td align="center">0.006</td>
 </tr>
 <tr class="odd">
-<td align="center">(4,6]</td>
-<td align="center">179</td>
-<td align="center">0.115</td>
+<td align="center">(2,3]</td>
+<td align="center">153</td>
+<td align="center">0.099</td>
 </tr>
 <tr class="even">
-<td align="center">(6,8]</td>
-<td align="center">70</td>
-<td align="center">0.045</td>
+<td align="center">(3,4]</td>
+<td align="center">247</td>
+<td align="center">0.16</td>
 </tr>
 <tr class="odd">
-<td align="center">(8,10]</td>
-<td align="center">54</td>
-<td align="center">0.035</td>
+<td align="center">(4,5]</td>
+<td align="center">142</td>
+<td align="center">0.092</td>
 </tr>
 <tr class="even">
-<td align="center">(10,12]</td>
-<td align="center">71</td>
-<td align="center">0.045</td>
+<td align="center">(5,6]</td>
+<td align="center">37</td>
+<td align="center">0.024</td>
 </tr>
 <tr class="odd">
-<td align="center">(12,14]</td>
-<td align="center">24</td>
+<td align="center">(6,7]</td>
+<td align="center">26</td>
+<td align="center">0.017</td>
+</tr>
+<tr class="even">
+<td align="center">(7,8]</td>
+<td align="center">44</td>
+<td align="center">0.028</td>
+</tr>
+<tr class="odd">
+<td align="center">(8,9]</td>
+<td align="center">43</td>
+<td align="center">0.028</td>
+</tr>
+<tr class="even">
+<td align="center">(9,10]</td>
+<td align="center">11</td>
+<td align="center">0.007</td>
+</tr>
+<tr class="odd">
+<td align="center">(10,11]</td>
+<td align="center">43</td>
+<td align="center">0.028</td>
+</tr>
+<tr class="even">
+<td align="center">(11,12]</td>
+<td align="center">22</td>
+<td align="center">0.014</td>
+</tr>
+<tr class="odd">
+<td align="center">(12,13]</td>
+<td align="center">23</td>
 <td align="center">0.015</td>
-</tr>
-<tr class="even">
-<td align="center">(14,16]</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">(16,18]</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center">(18,20]</td>
-<td align="center">7</td>
-<td align="center">0.004</td>
-</tr>
-<tr class="odd">
-<td align="center">(20,22]</td>
-<td align="center">1</td>
-<td align="center">0.001</td>
 </tr>
 </tbody>
 </table>
@@ -972,7 +713,7 @@ div.tocify {
 <hr />
 </div>
 <div id="latencia-maxima" class="section level3">
-<h3><span class="header-section-number">2.1.15</span> Latência máxima</h3>
+<h3><span class="header-section-number">2.1.8</span> Latência máxima</h3>
 <center>
 <table style="width:46%;">
 <colgroup>
@@ -991,12 +732,12 @@ div.tocify {
 <tr class="odd">
 <td align="center">[0,2]</td>
 <td align="center">419</td>
-<td align="center">0.268</td>
+<td align="center">0.271</td>
 </tr>
 <tr class="even">
 <td align="center">(2,4]</td>
 <td align="center">208</td>
-<td align="center">0.133</td>
+<td align="center">0.134</td>
 </tr>
 <tr class="odd">
 <td align="center">(4,6]</td>
@@ -1006,17 +747,17 @@ div.tocify {
 <tr class="even">
 <td align="center">(6,8]</td>
 <td align="center">353</td>
-<td align="center">0.226</td>
+<td align="center">0.228</td>
 </tr>
 <tr class="odd">
 <td align="center">(8,10]</td>
 <td align="center">189</td>
-<td align="center">0.121</td>
+<td align="center">0.122</td>
 </tr>
 <tr class="even">
 <td align="center">(10,12]</td>
 <td align="center">188</td>
-<td align="center">0.12</td>
+<td align="center">0.122</td>
 </tr>
 <tr class="odd">
 <td align="center">(12,14]</td>
@@ -1035,33 +776,13 @@ div.tocify {
 </tr>
 <tr class="even">
 <td align="center">(18,20]</td>
-<td align="center">23</td>
-<td align="center">0.015</td>
+<td align="center">19</td>
+<td align="center">0.012</td>
 </tr>
 <tr class="odd">
 <td align="center">(20,22]</td>
 <td align="center">12</td>
 <td align="center">0.008</td>
-</tr>
-<tr class="even">
-<td align="center">(22,24]</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">(24,26]</td>
-<td align="center">10</td>
-<td align="center">0.006</td>
-</tr>
-<tr class="even">
-<td align="center">(26,28]</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">(28,30]</td>
-<td align="center">1</td>
-<td align="center">0.001</td>
 </tr>
 </tbody>
 </table>
@@ -1100,54 +821,24 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><strong>p0156</strong></td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center"><strong>p06</strong></td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0.015</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">1</td>
-</tr>
-<tr class="odd">
-<td align="center"><strong>p23</strong></td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0.506</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">8</td>
-</tr>
-<tr class="even">
 <td align="center"><strong>min_lat</strong></td>
 <td align="center">0</td>
 <td align="center">1</td>
-<td align="center">3.417</td>
+<td align="center">3.297</td>
 <td align="center">3</td>
 <td align="center">1</td>
 <td align="center">5</td>
-<td align="center">21</td>
+<td align="center">13</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="center"><strong>max_lat</strong></td>
 <td align="center">1</td>
 <td align="center">1</td>
-<td align="center">6.771</td>
+<td align="center">6.604</td>
 <td align="center">8</td>
 <td align="center">1</td>
-<td align="center">10</td>
-<td align="center">29</td>
+<td align="center">9</td>
+<td align="center">22</td>
 </tr>
 </tbody>
 </table>
@@ -1174,34 +865,16 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><strong>p0156</strong></td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center"><strong>p06</strong></td>
-<td align="center">1</td>
-<td align="center">0.015</td>
-<td align="center">0.12</td>
-</tr>
-<tr class="odd">
-<td align="center"><strong>p23</strong></td>
-<td align="center">8</td>
-<td align="center">0.406</td>
-<td align="center">0.638</td>
-</tr>
-<tr class="even">
 <td align="center"><strong>min_lat</strong></td>
-<td align="center">21</td>
-<td align="center">11.27</td>
-<td align="center">3.357</td>
+<td align="center">13</td>
+<td align="center">9.699</td>
+<td align="center">3.114</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="center"><strong>max_lat</strong></td>
-<td align="center">28</td>
-<td align="center">24.67</td>
-<td align="center">4.967</td>
+<td align="center">21</td>
+<td align="center">21.91</td>
+<td align="center">4.681</td>
 </tr>
 </tbody>
 </table>
@@ -1212,7 +885,7 @@ div.tocify {
 <div id="analise-grafica" class="section level2">
 <h2><span class="header-section-number">2.3</span> Análise gráfica</h2>
 <p>Gráficos de barras para a frequência de cada nível de cada variável. Traz a mesma informação das já apresentadas tabelas de frequência, porém com um apelo visual.</p>
-<p><img src="base2_files/figure-html/unnamed-chunk-21-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="base2_files/figure-html/unnamed-chunk-14-1.png" width="960" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>
@@ -1224,88 +897,8 @@ div.tocify {
 <h2><span class="header-section-number">3.1</span> Tabelas</h2>
 <p>As tabelas para análise bivariada trazem os níveis da variável de interesse, a latência mínima média para cada nível e seu desvio padrão. O mesmo é feito para a latência máxima e, na última coluna, é mostrado o número de observações que há em cada nível.</p>
 <hr />
-<div id="p0156-1" class="section level3">
-<h3><span class="header-section-number">3.1.1</span> p0156</h3>
-<center>
-<table style="width:92%;">
-<colgroup>
-<col width="12%" />
-<col width="13%" />
-<col width="20%" />
-<col width="13%" />
-<col width="20%" />
-<col width="9%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">min_lat</th>
-<th align="center">desv_pad_min</th>
-<th align="center">max_lat</th>
-<th align="center">desv_pad_max</th>
-<th align="center">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">3.417</td>
-<td align="center">3.357</td>
-<td align="center">6.771</td>
-<td align="center">4.967</td>
-<td align="center">1562</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p06-1" class="section level3">
-<h3><span class="header-section-number">3.1.2</span> p06</h3>
-<center>
-<table style="width:92%;">
-<colgroup>
-<col width="12%" />
-<col width="13%" />
-<col width="20%" />
-<col width="13%" />
-<col width="20%" />
-<col width="9%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">min_lat</th>
-<th align="center">desv_pad_min</th>
-<th align="center">max_lat</th>
-<th align="center">desv_pad_max</th>
-<th align="center">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">3.314</td>
-<td align="center">3.268</td>
-<td align="center">6.613</td>
-<td align="center">4.793</td>
-<td align="center">1539</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">10.35</td>
-<td align="center">1.369</td>
-<td align="center">17.39</td>
-<td align="center">4.943</td>
-<td align="center">23</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
 <div id="p23-1" class="section level3">
-<h3><span class="header-section-number">3.1.3</span> p23</h3>
+<h3><span class="header-section-number">3.1.1</span> p23</h3>
 <center>
 <table style="width:90%;">
 <colgroup>
@@ -1337,79 +930,11 @@ div.tocify {
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">4.107</td>
-<td align="center">3.741</td>
-<td align="center">10.18</td>
-<td align="center">3.37</td>
-<td align="center">722</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">18</td>
-<td align="center">0</td>
-<td align="center">6</td>
-</tr>
-<tr class="even">
-<td align="center">4</td>
-<td align="center">1.9</td>
-<td align="center">4.012</td>
-<td align="center">17.9</td>
-<td align="center">4.433</td>
-<td align="center">10</td>
-</tr>
-<tr class="odd">
-<td align="center">8</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">22</td>
-<td align="center">0</td>
-<td align="center">2</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p237-1" class="section level3">
-<h3><span class="header-section-number">3.1.4</span> p237</h3>
-<center>
-<table style="width:92%;">
-<colgroup>
-<col width="12%" />
-<col width="13%" />
-<col width="20%" />
-<col width="13%" />
-<col width="20%" />
-<col width="9%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">min_lat</th>
-<th align="center">desv_pad_min</th>
-<th align="center">max_lat</th>
-<th align="center">desv_pad_max</th>
-<th align="center">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">3.369</td>
-<td align="center">3.374</td>
-<td align="center">6.662</td>
-<td align="center">4.996</td>
-<td align="center">1516</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">5</td>
-<td align="center">2.251</td>
-<td align="center">10.39</td>
-<td align="center">1.308</td>
-<td align="center">46</td>
+<td align="center">3.789</td>
+<td align="center">3.328</td>
+<td align="center">10.1</td>
+<td align="center">3.02</td>
+<td align="center">725</td>
 </tr>
 </tbody>
 </table>
@@ -1417,7 +942,7 @@ div.tocify {
 <hr />
 </div>
 <div id="p4-1" class="section level3">
-<h3><span class="header-section-number">3.1.5</span> p4</h3>
+<h3><span class="header-section-number">3.1.2</span> p4</h3>
 <center>
 <table style="width:92%;">
 <colgroup>
@@ -1441,107 +966,19 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">3.32</td>
-<td align="center">3.333</td>
-<td align="center">6.614</td>
-<td align="center">4.984</td>
-<td align="center">1504</td>
+<td align="center">3.194</td>
+<td align="center">3.074</td>
+<td align="center">6.439</td>
+<td align="center">4.682</td>
+<td align="center">1489</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">5.821</td>
-<td align="center">2.955</td>
-<td align="center">10.91</td>
-<td align="center">1.74</td>
-<td align="center">56</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">9.5</td>
-<td align="center">0.707</td>
-<td align="center">9.5</td>
-<td align="center">0.707</td>
-<td align="center">2</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p1-1" class="section level3">
-<h3><span class="header-section-number">3.1.6</span> p1</h3>
-<center>
-<table style="width:92%;">
-<colgroup>
-<col width="12%" />
-<col width="13%" />
-<col width="20%" />
-<col width="13%" />
-<col width="20%" />
-<col width="9%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">min_lat</th>
-<th align="center">desv_pad_min</th>
-<th align="center">max_lat</th>
-<th align="center">desv_pad_max</th>
-<th align="center">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">3.349</td>
-<td align="center">3.322</td>
-<td align="center">6.662</td>
-<td align="center">4.841</td>
-<td align="center">1529</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">6.576</td>
-<td align="center">3.491</td>
-<td align="center">11.85</td>
-<td align="center">7.567</td>
-<td align="center">33</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p15-1" class="section level3">
-<h3><span class="header-section-number">3.1.7</span> p15</h3>
-<center>
-<table style="width:92%;">
-<colgroup>
-<col width="12%" />
-<col width="13%" />
-<col width="20%" />
-<col width="13%" />
-<col width="20%" />
-<col width="9%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">min_lat</th>
-<th align="center">desv_pad_min</th>
-<th align="center">max_lat</th>
-<th align="center">desv_pad_max</th>
-<th align="center">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">3.417</td>
-<td align="center">3.357</td>
-<td align="center">6.771</td>
-<td align="center">4.967</td>
-<td align="center">1562</td>
+<td align="center">5.948</td>
+<td align="center">2.982</td>
+<td align="center">10.86</td>
+<td align="center">1.732</td>
+<td align="center">58</td>
 </tr>
 </tbody>
 </table>
@@ -1549,7 +986,7 @@ div.tocify {
 <hr />
 </div>
 <div id="p015-1" class="section level3">
-<h3><span class="header-section-number">3.1.8</span> p015</h3>
+<h3><span class="header-section-number">3.1.3</span> p015</h3>
 <center>
 <table style="width:92%;">
 <colgroup>
@@ -1573,27 +1010,19 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">3.78</td>
-<td align="center">3.456</td>
-<td align="center">6.863</td>
-<td align="center">4.92</td>
-<td align="center">1350</td>
+<td align="center">3.645</td>
+<td align="center">3.199</td>
+<td align="center">6.67</td>
+<td align="center">4.587</td>
+<td align="center">1335</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">1.115</td>
-<td align="center">0.92</td>
-<td align="center">6.245</td>
-<td align="center">5.318</td>
-<td align="center">200</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">5.25</td>
-<td align="center">3.415</td>
-<td align="center">12</td>
+<td align="center">1.108</td>
+<td align="center">0.894</td>
+<td align="center">6.189</td>
+<td align="center">5.228</td>
+<td align="center">212</td>
 </tr>
 </tbody>
 </table>
@@ -1601,7 +1030,7 @@ div.tocify {
 <hr />
 </div>
 <div id="p5-1" class="section level3">
-<h3><span class="header-section-number">3.1.9</span> p5</h3>
+<h3><span class="header-section-number">3.1.4</span> p5</h3>
 <center>
 <table style="width:90%;">
 <colgroup>
@@ -1625,43 +1054,19 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">3.466</td>
-<td align="center">3.536</td>
-<td align="center">6.874</td>
-<td align="center">4.849</td>
-<td align="center">998</td>
+<td align="center">3.309</td>
+<td align="center">3.202</td>
+<td align="center">6.689</td>
+<td align="center">4.533</td>
+<td align="center">987</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">2.987</td>
-<td align="center">2.977</td>
-<td align="center">6</td>
-<td align="center">4.876</td>
-<td align="center">458</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">4.202</td>
-<td align="center">2.212</td>
-<td align="center">8.202</td>
-<td align="center">5.272</td>
-<td align="center">94</td>
-</tr>
-<tr class="even">
-<td align="center">3</td>
-<td align="center">10</td>
-<td align="center">1.069</td>
-<td align="center">16.5</td>
-<td align="center">0.535</td>
-<td align="center">8</td>
-</tr>
-<tr class="odd">
-<td align="center">4</td>
-<td align="center">9</td>
-<td align="center">0</td>
-<td align="center">16.5</td>
-<td align="center">0.577</td>
-<td align="center">4</td>
+<td align="center">3.277</td>
+<td align="center">2.956</td>
+<td align="center">6.455</td>
+<td align="center">4.931</td>
+<td align="center">560</td>
 </tr>
 </tbody>
 </table>
@@ -1669,7 +1074,7 @@ div.tocify {
 <hr />
 </div>
 <div id="p0-1" class="section level3">
-<h3><span class="header-section-number">3.1.10</span> p0</h3>
+<h3><span class="header-section-number">3.1.5</span> p0</h3>
 <center>
 <table style="width:92%;">
 <colgroup>
@@ -1701,63 +1106,11 @@ div.tocify {
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">6.932</td>
-<td align="center">4.829</td>
-<td align="center">10.58</td>
-<td align="center">6.285</td>
-<td align="center">207</td>
-</tr>
-<tr class="odd">
-<td align="center">3</td>
-<td align="center">9.833</td>
-<td align="center">1.239</td>
-<td align="center">18.25</td>
-<td align="center">4.963</td>
-<td align="center">24</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p05-1" class="section level3">
-<h3><span class="header-section-number">3.1.11</span> p05</h3>
-<center>
-<table style="width:92%;">
-<colgroup>
-<col width="12%" />
-<col width="13%" />
-<col width="20%" />
-<col width="13%" />
-<col width="20%" />
-<col width="9%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">min_lat</th>
-<th align="center">desv_pad_min</th>
-<th align="center">max_lat</th>
-<th align="center">desv_pad_max</th>
-<th align="center">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">3.427</td>
-<td align="center">3.368</td>
-<td align="center">6.777</td>
-<td align="center">4.973</td>
-<td align="center">1549</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">2.308</td>
-<td align="center">1.109</td>
-<td align="center">6.077</td>
-<td align="center">4.212</td>
-<td align="center">13</td>
+<td align="center">6.639</td>
+<td align="center">4.074</td>
+<td align="center">10.5</td>
+<td align="center">5.817</td>
+<td align="center">216</td>
 </tr>
 </tbody>
 </table>
@@ -1765,7 +1118,7 @@ div.tocify {
 <hr />
 </div>
 <div id="p01-1" class="section level3">
-<h3><span class="header-section-number">3.1.12</span> p01</h3>
+<h3><span class="header-section-number">3.1.6</span> p01</h3>
 <center>
 <table style="width:90%;">
 <colgroup>
@@ -1789,71 +1142,19 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">3.204</td>
-<td align="center">3.497</td>
-<td align="center">6.655</td>
-<td align="center">5.312</td>
-<td align="center">896</td>
+<td align="center">2.99</td>
+<td align="center">3.062</td>
+<td align="center">6.36</td>
+<td align="center">4.83</td>
+<td align="center">881</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">3.332</td>
-<td align="center">2.759</td>
-<td align="center">6.587</td>
-<td align="center">4.234</td>
-<td align="center">630</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">9.667</td>
-<td align="center">1.768</td>
-<td align="center">12.13</td>
-<td align="center">3.767</td>
-<td align="center">30</td>
-</tr>
-<tr class="even">
-<td align="center">3</td>
-<td align="center">13</td>
-<td align="center">0</td>
-<td align="center">16.67</td>
-<td align="center">4.033</td>
-<td align="center">6</td>
-</tr>
-</tbody>
-</table>
-</center>
-<hr />
-</div>
-<div id="p6-1" class="section level3">
-<h3><span class="header-section-number">3.1.13</span> p6</h3>
-<center>
-<table style="width:92%;">
-<colgroup>
-<col width="12%" />
-<col width="13%" />
-<col width="20%" />
-<col width="13%" />
-<col width="20%" />
-<col width="9%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Niveis</th>
-<th align="center">min_lat</th>
-<th align="center">desv_pad_min</th>
-<th align="center">max_lat</th>
-<th align="center">desv_pad_max</th>
-<th align="center">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">3.417</td>
-<td align="center">3.357</td>
-<td align="center">6.771</td>
-<td align="center">4.967</td>
-<td align="center">1562</td>
+<td align="center">3.704</td>
+<td align="center">3.139</td>
+<td align="center">6.928</td>
+<td align="center">4.459</td>
+<td align="center">666</td>
 </tr>
 </tbody>
 </table>
@@ -1865,7 +1166,7 @@ div.tocify {
 <h2><span class="header-section-number">3.2</span> Análise gráfica</h2>
 <p>Análise gráfica do efeito marginal das variáveis em estudo sobre as variáveis de interesse (latências). Para as variáveis numéricas foram produzidos diagramas de dispersão com uma linha de tendência linear. para as variáveis categóricas foram produzidos box-plots para os níveis dos fatores. O último gráfico mostra a relação entre as latências mínima e máxima.</p>
 <hr />
-<p><img src="base2_files/figure-html/unnamed-chunk-36-1.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-2.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-3.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-4.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-5.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-6.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-7.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-8.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-9.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-10.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-11.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-12.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-13.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-36-14.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="base2_files/figure-html/unnamed-chunk-22-1.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-22-2.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-22-3.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-22-4.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-22-5.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-22-6.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-22-7.png" width="960" style="display: block; margin: auto;" /><img src="base2_files/figure-html/unnamed-chunk-22-8.png" width="960" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="correlograma" class="section level2">
@@ -1878,8 +1179,7 @@ div.tocify {
 <li><p>Valores próximos de 0 indicam ausência de correlação.</p></li>
 </ul>
 <p>O correlograma é uma respresentação gráfica da matriz de correlações de Pearson obtida de uma dada matriz numérica.</p>
-<pre><code>## Warning in cor(numericas, method = &quot;pearson&quot;): o desvio padrão é zero</code></pre>
-<p><img src="base2_files/figure-html/unnamed-chunk-37-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="base2_files/figure-html/unnamed-chunk-23-1.png" width="480" style="display: block; margin: auto;" /></p>
 <hr />
 <center>
 <table>

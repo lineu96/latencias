@@ -360,13 +360,6 @@ div.tocify {
     Análise Base 2
   </a>
 </li>
-<li>
-  <a href="base2_reanalise.html">
-    <span class="fa fa-bar-chart"></span>
-     
-    Reanálise Base 2
-  </a>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -414,21 +407,20 @@ div.tocify {
 <hr />
 <div id="limpeza" class="section level1">
 <h1><span class="header-section-number">1</span> Limpeza</h1>
-<p>Numa primeira análise optamos pela remoção das portas 015, 5, 01 e 6 devido à alta proporção de zeros, isto é, neste conjunto de dados estas portas foram poucas vezes usadas. Foram retiradas também as colunas set_rex e mem_xchg. As portas 0, 237, 4, 1 e 15 foram analisadas como binárias (foi ou não usada). As demais portas não sofreram tratamentos.</p>
+<p>Numa primeira análise optamos pela remoção das portas 05, 015, 5, 01 e 6 devido à alta proporção de zeros, isto é, neste conjunto de dados estas portas foram poucas vezes usadas. Foram retiradas também as colunas set_rex e mem_xchg.</p>
+<p>As portas 0, 237, 4, 1 e 15 foram analisadas como binárias (foi ou não usada). As demais portas não sofreram tratamentos.</p>
 <hr />
 <p>Ainda com base numa análise inicial, foi constatado que a massa de latências está entre 0 e 20 para a mínima e 0 e 40 para a máxima, valores fora desses intervalos são poucos e extremos e cabe a um analista avaliar estes casos.</p>
 <hr />
 <p>Com isto foram geradas duas bases:</p>
 <ul>
-<li><p>A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 20 para mínima e de 40 para máxima. Esta contém 24 casos.</p></li>
-<li><p>A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 20 ou máxima abaixo de 40. Esta contém 1103 casos.</p></li>
+<li><p>A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 20 para mínima e de 40 para máxima. Esta contém 20 casos.</p></li>
+<li><p>A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 20 ou máxima abaixo de 40. As instruções DIV e IDIV, apesar de estar fora do critério mencionado, foram reincluídas à maior base devido à sua importância. Sendo assim, a base para análise em massa continha 1112 instruções.</p></li>
 </ul>
 <hr />
-<p>Com este subset das bases não havia informação para análise da variável segment e nem da porta 05, portanto elas não foram analisadas.</p>
-<hr />
 <p>Base para análise manual:</p>
-<div id="htmlwidget-28edfd589d438d57647d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-28edfd589d438d57647d">{"x":{"filter":"none","data":[[408,412,415,416,419,423,466,467,468,469,470,471,478,479,480,481,482,483,509,510,1043,1044,1045,1046],["DIV","DIV","ENTER","ENTER_W","IDIV","IDIV","LAR","LAR","LAR","LAR","LAR","LAR","LSL","LSL","LSL","LSL","LSL","LSL","MOV_DR","MOV_DR","VERR","VERR","VERW","VERW"],["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],[0,0,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[6,7,4,4,0,0,0,1,0,1,0,1,0,3,0,3,0,3,0,0,0,0,0,0],[13,13,2,2,27,27,12,11,12,11,12,11,7,6,7,6,7,6,24,16,10,10,0,0],[1,0,2,2,1,0,3,2,3,2,3,2,3,2,3,2,3,2,0,0,0,0,0,0],["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],["0","0","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0"],["1","1","0","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1"],["0","1","0","0","1","1","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0"],["1","1","0","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1"],[1,1,0,0,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,2,0],[6,6,104,93,37,37,38,37,38,37,38,37,37,35,39,36,39,35,207,172,62,61,64,63],[95,89,104,93,101,96,63,57,63,56,63,56,61,55,61,54,60,54,207,172,68,61,69,63]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>n<\/th>\n      <th>inst<\/th>\n      <th>lock<\/th>\n      <th>segment<\/th>\n      <th>p0156<\/th>\n      <th>p06<\/th>\n      <th>p23<\/th>\n      <th>p237<\/th>\n      <th>p4<\/th>\n      <th>p1<\/th>\n      <th>p15<\/th>\n      <th>p0<\/th>\n      <th>p05<\/th>\n      <th>min_lat<\/th>\n      <th>max_lat<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":12,"columnDefs":[{"className":"dt-right","targets":[0,3,4,5,6,12,13,14]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,12,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b6cd79c92358ecda2bf2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b6cd79c92358ecda2bf2">{"x":{"filter":"none","data":[[415,416,467,468,469,470,471,472,479,480,481,482,483,484,512,513,1048,1049,1050,1051],["ENTER_W","ENTER","LAR","LAR","LAR","LAR","LAR","LAR","LSL","LSL","LSL","LSL","LSL","LSL","MOV_DR","MOV_DR","VERR","VERR","VERW","VERW"],["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[4,4,1,1,1,0,0,0,3,3,3,0,0,0,0,0,0,0,0,0],[2,2,11,11,11,12,12,12,6,6,6,7,7,7,24,16,10,10,0,0],[2,2,2,2,2,3,3,3,2,2,2,3,3,3,0,0,0,0,0,0],["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],["1","1","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0"],["0","0","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1"],["0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0"],["0","0","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1"],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2],[93,104,37,37,37,38,38,38,35,36,35,37,39,39,207,172,61,62,63,64],[93,104,57,56,56,63,63,63,55,54,54,61,61,60,207,172,61,68,63,69],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>n<\/th>\n      <th>inst<\/th>\n      <th>lock<\/th>\n      <th>segment<\/th>\n      <th>p0156<\/th>\n      <th>p06<\/th>\n      <th>p23<\/th>\n      <th>p237<\/th>\n      <th>p4<\/th>\n      <th>p1<\/th>\n      <th>p15<\/th>\n      <th>p0<\/th>\n      <th>p05<\/th>\n      <th>min_lat<\/th>\n      <th>max_lat<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":20,"columnDefs":[{"className":"dt-right","targets":[0,3,4,5,6,12,13,14,15]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,20,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 <hr />
 <p>As seções seguintes referem-se à análise exploratória da base maior, que continha 1103 observações.</p>
 <hr />
@@ -460,13 +452,13 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">974</td>
-<td align="center">0.883</td>
+<td align="center">983</td>
+<td align="center">0.884</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
 <td align="center">129</td>
-<td align="center">0.117</td>
+<td align="center">0.116</td>
 </tr>
 </tbody>
 </table>
@@ -492,28 +484,28 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">458</td>
-<td align="center">0.415</td>
+<td align="center">465</td>
+<td align="center">0.418</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
 <td align="center">395</td>
-<td align="center">0.358</td>
+<td align="center">0.355</td>
 </tr>
 <tr class="odd">
 <td align="center">2</td>
 <td align="center">57</td>
-<td align="center">0.052</td>
+<td align="center">0.051</td>
 </tr>
 <tr class="even">
 <td align="center">3</td>
 <td align="center">58</td>
-<td align="center">0.053</td>
+<td align="center">0.052</td>
 </tr>
 <tr class="odd">
 <td align="center">4</td>
 <td align="center">98</td>
-<td align="center">0.089</td>
+<td align="center">0.088</td>
 </tr>
 <tr class="even">
 <td align="center">5</td>
@@ -522,8 +514,13 @@ div.tocify {
 </tr>
 <tr class="odd">
 <td align="center">6</td>
-<td align="center">8</td>
-<td align="center">0.007</td>
+<td align="center">9</td>
+<td align="center">0.008</td>
+</tr>
+<tr class="even">
+<td align="center">7</td>
+<td align="center">1</td>
+<td align="center">0.001</td>
 </tr>
 </tbody>
 </table>
@@ -549,23 +546,23 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">467</td>
+<td align="center">470</td>
 <td align="center">0.423</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">306</td>
+<td align="center">308</td>
 <td align="center">0.277</td>
 </tr>
 <tr class="odd">
 <td align="center">2</td>
 <td align="center">195</td>
-<td align="center">0.177</td>
+<td align="center">0.175</td>
 </tr>
 <tr class="even">
 <td align="center">3</td>
 <td align="center">76</td>
-<td align="center">0.069</td>
+<td align="center">0.068</td>
 </tr>
 <tr class="odd">
 <td align="center">4</td>
@@ -592,6 +589,16 @@ div.tocify {
 <td align="center">1</td>
 <td align="center">0.001</td>
 </tr>
+<tr class="even">
+<td align="center">13</td>
+<td align="center">2</td>
+<td align="center">0.002</td>
+</tr>
+<tr class="odd">
+<td align="center">27</td>
+<td align="center">2</td>
+<td align="center">0.002</td>
+</tr>
 </tbody>
 </table>
 </center>
@@ -616,18 +623,18 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">554</td>
-<td align="center">0.502</td>
+<td align="center">561</td>
+<td align="center">0.504</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">383</td>
-<td align="center">0.347</td>
+<td align="center">385</td>
+<td align="center">0.346</td>
 </tr>
 <tr class="odd">
 <td align="center">2</td>
 <td align="center">166</td>
-<td align="center">0.15</td>
+<td align="center">0.149</td>
 </tr>
 </tbody>
 </table>
@@ -653,13 +660,13 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">857</td>
-<td align="center">0.777</td>
+<td align="center">866</td>
+<td align="center">0.779</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
 <td align="center">246</td>
-<td align="center">0.223</td>
+<td align="center">0.221</td>
 </tr>
 </tbody>
 </table>
@@ -685,13 +692,13 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">688</td>
-<td align="center">0.624</td>
+<td align="center">697</td>
+<td align="center">0.627</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
 <td align="center">415</td>
-<td align="center">0.376</td>
+<td align="center">0.373</td>
 </tr>
 </tbody>
 </table>
@@ -717,13 +724,13 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">961</td>
-<td align="center">0.871</td>
+<td align="center">966</td>
+<td align="center">0.869</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">142</td>
-<td align="center">0.129</td>
+<td align="center">146</td>
+<td align="center">0.131</td>
 </tr>
 </tbody>
 </table>
@@ -749,13 +756,13 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">1073</td>
-<td align="center">0.973</td>
+<td align="center">1079</td>
+<td align="center">0.97</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">30</td>
-<td align="center">0.027</td>
+<td align="center">33</td>
+<td align="center">0.03</td>
 </tr>
 </tbody>
 </table>
@@ -781,13 +788,13 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">1089</td>
-<td align="center">0.987</td>
+<td align="center">1094</td>
+<td align="center">0.984</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">14</td>
-<td align="center">0.013</td>
+<td align="center">18</td>
+<td align="center">0.016</td>
 </tr>
 </tbody>
 </table>
@@ -812,64 +819,44 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">[0,2]</td>
-<td align="center">653</td>
-<td align="center">0.592</td>
+<td align="center">[0,5]</td>
+<td align="center">910</td>
+<td align="center">0.818</td>
 </tr>
 <tr class="even">
-<td align="center">(2,4]</td>
-<td align="center">218</td>
-<td align="center">0.198</td>
+<td align="center">(5,10]</td>
+<td align="center">33</td>
+<td align="center">0.03</td>
 </tr>
 <tr class="odd">
-<td align="center">(4,6]</td>
-<td align="center">55</td>
-<td align="center">0.05</td>
+<td align="center">(10,15]</td>
+<td align="center">147</td>
+<td align="center">0.132</td>
 </tr>
 <tr class="even">
-<td align="center">(6,8]</td>
-<td align="center">7</td>
-<td align="center">0.006</td>
-</tr>
-<tr class="odd">
-<td align="center">(8,10]</td>
-<td align="center">3</td>
-<td align="center">0.003</td>
-</tr>
-<tr class="even">
-<td align="center">(10,12]</td>
-<td align="center">56</td>
-<td align="center">0.051</td>
-</tr>
-<tr class="odd">
-<td align="center">(12,14]</td>
-<td align="center">28</td>
-<td align="center">0.025</td>
-</tr>
-<tr class="even">
-<td align="center">(14,16]</td>
-<td align="center">63</td>
-<td align="center">0.057</td>
-</tr>
-<tr class="odd">
-<td align="center">(16,18]</td>
+<td align="center">(15,20]</td>
 <td align="center">4</td>
 <td align="center">0.004</td>
 </tr>
+<tr class="odd">
+<td align="center">(20,25]</td>
+<td align="center">16</td>
+<td align="center">0.014</td>
+</tr>
 <tr class="even">
-<td align="center">(18,20]</td>
+<td align="center">(25,30]</td>
 <td align="center">0</td>
 <td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">(20,22]</td>
-<td align="center">12</td>
-<td align="center">0.011</td>
+<td align="center">(30,35]</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">(22,24]</td>
-<td align="center">4</td>
-<td align="center">0.004</td>
+<td align="center">(35,40]</td>
+<td align="center">2</td>
+<td align="center">0.002</td>
 </tr>
 </tbody>
 </table>
@@ -879,9 +866,9 @@ div.tocify {
 <div id="latencia-maxima" class="section level3">
 <h3><span class="header-section-number">2.1.11</span> Latência máxima</h3>
 <center>
-<table style="width:46%;">
+<table style="width:49%;">
 <colgroup>
-<col width="13%" />
+<col width="16%" />
 <col width="9%" />
 <col width="22%" />
 </colgroup>
@@ -894,89 +881,59 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">[0,2]</td>
-<td align="center">441</td>
-<td align="center">0.4</td>
+<td align="center">[0,10]</td>
+<td align="center">787</td>
+<td align="center">0.708</td>
 </tr>
 <tr class="even">
-<td align="center">(2,4]</td>
-<td align="center">36</td>
-<td align="center">0.033</td>
+<td align="center">(10,20]</td>
+<td align="center">171</td>
+<td align="center">0.154</td>
 </tr>
 <tr class="odd">
-<td align="center">(4,6]</td>
-<td align="center">164</td>
-<td align="center">0.149</td>
+<td align="center">(20,30]</td>
+<td align="center">137</td>
+<td align="center">0.123</td>
 </tr>
 <tr class="even">
-<td align="center">(6,8]</td>
-<td align="center">26</td>
-<td align="center">0.024</td>
+<td align="center">(30,40]</td>
+<td align="center">13</td>
+<td align="center">0.012</td>
 </tr>
 <tr class="odd">
-<td align="center">(8,10]</td>
-<td align="center">115</td>
-<td align="center">0.104</td>
+<td align="center">(40,50]</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">(10,12]</td>
-<td align="center">133</td>
-<td align="center">0.121</td>
+<td align="center">(50,60]</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">(12,14]</td>
-<td align="center">2</td>
-<td align="center">0.002</td>
+<td align="center">(60,70]</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">(14,16]</td>
-<td align="center">19</td>
-<td align="center">0.017</td>
+<td align="center">(70,80]</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">(16,18]</td>
-<td align="center">16</td>
-<td align="center">0.015</td>
-</tr>
-<tr class="even">
-<td align="center">(18,20]</td>
+<td align="center">(80,90]</td>
 <td align="center">1</td>
 <td align="center">0.001</td>
 </tr>
-<tr class="odd">
-<td align="center">(20,22]</td>
-<td align="center">2</td>
-<td align="center">0.002</td>
-</tr>
 <tr class="even">
-<td align="center">(22,24]</td>
+<td align="center">(90,100]</td>
 <td align="center">2</td>
 <td align="center">0.002</td>
 </tr>
 <tr class="odd">
-<td align="center">(24,26]</td>
-<td align="center">4</td>
-<td align="center">0.004</td>
-</tr>
-<tr class="even">
-<td align="center">(26,28]</td>
-<td align="center">3</td>
-<td align="center">0.003</td>
-</tr>
-<tr class="odd">
-<td align="center">(28,30]</td>
-<td align="center">126</td>
-<td align="center">0.114</td>
-</tr>
-<tr class="even">
-<td align="center">(30,32]</td>
-<td align="center">4</td>
-<td align="center">0.004</td>
-</tr>
-<tr class="odd">
-<td align="center">(32,34]</td>
-<td align="center">9</td>
-<td align="center">0.008</td>
+<td align="center">(100,110]</td>
+<td align="center">1</td>
+<td align="center">0.001</td>
 </tr>
 </tbody>
 </table>
@@ -1018,27 +975,27 @@ div.tocify {
 <td align="center"><strong>p0156</strong></td>
 <td align="center">0</td>
 <td align="center">0</td>
-<td align="center">1.15</td>
+<td align="center">1.152</td>
 <td align="center">1</td>
 <td align="center">0</td>
 <td align="center">1</td>
-<td align="center">6</td>
+<td align="center">7</td>
 </tr>
 <tr class="even">
 <td align="center"><strong>p06</strong></td>
 <td align="center">0</td>
 <td align="center">0</td>
-<td align="center">1.088</td>
+<td align="center">1.153</td>
 <td align="center">1</td>
 <td align="center">0</td>
 <td align="center">2</td>
-<td align="center">8</td>
+<td align="center">27</td>
 </tr>
 <tr class="odd">
 <td align="center"><strong>p23</strong></td>
 <td align="center">0</td>
 <td align="center">0</td>
-<td align="center">0.648</td>
+<td align="center">0.645</td>
 <td align="center">0</td>
 <td align="center">0</td>
 <td align="center">1</td>
@@ -1048,21 +1005,21 @@ div.tocify {
 <td align="center"><strong>min_lat</strong></td>
 <td align="center">0</td>
 <td align="center">1</td>
-<td align="center">3.764</td>
+<td align="center">3.811</td>
 <td align="center">1</td>
 <td align="center">1</td>
 <td align="center">3</td>
-<td align="center">23</td>
+<td align="center">37</td>
 </tr>
 <tr class="odd">
 <td align="center"><strong>max_lat</strong></td>
+<td align="center">0</td>
 <td align="center">1</td>
-<td align="center">1</td>
-<td align="center">8.572</td>
+<td align="center">8.845</td>
 <td align="center">6</td>
 <td align="center">1</td>
 <td align="center">11</td>
-<td align="center">34</td>
+<td align="center">101</td>
 </tr>
 </tbody>
 </table>
@@ -1090,33 +1047,33 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center"><strong>p0156</strong></td>
-<td align="center">6</td>
-<td align="center">2.058</td>
-<td align="center">1.435</td>
+<td align="center">7</td>
+<td align="center">2.102</td>
+<td align="center">1.45</td>
 </tr>
 <tr class="even">
 <td align="center"><strong>p06</strong></td>
-<td align="center">8</td>
-<td align="center">1.636</td>
-<td align="center">1.279</td>
+<td align="center">27</td>
+<td align="center">3.086</td>
+<td align="center">1.757</td>
 </tr>
 <tr class="odd">
 <td align="center"><strong>p23</strong></td>
 <td align="center">2</td>
-<td align="center">0.53</td>
-<td align="center">0.728</td>
+<td align="center">0.528</td>
+<td align="center">0.727</td>
 </tr>
 <tr class="even">
 <td align="center"><strong>min_lat</strong></td>
-<td align="center">23</td>
-<td align="center">22.89</td>
-<td align="center">4.784</td>
+<td align="center">37</td>
+<td align="center">24.76</td>
+<td align="center">4.976</td>
 </tr>
 <tr class="odd">
 <td align="center"><strong>max_lat</strong></td>
-<td align="center">33</td>
-<td align="center">87.24</td>
-<td align="center">9.34</td>
+<td align="center">101</td>
+<td align="center">113.9</td>
+<td align="center">10.67</td>
 </tr>
 </tbody>
 </table>
@@ -1127,7 +1084,7 @@ div.tocify {
 <div id="analise-grafica" class="section level2">
 <h2><span class="header-section-number">2.3</span> Análise gráfica</h2>
 <p>Gráficos de barras para a frequência de cada nível de cada variável. Traz a mesma informação das já apresentadas tabelas de frequência, porém com um apelo visual.</p>
-<p><img src="base1_files/figure-html/unnamed-chunk-89-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="base1_files/figure-html/unnamed-chunk-17-1.png" width="960" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>
@@ -1164,11 +1121,11 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">2.425</td>
-<td align="center">3.205</td>
-<td align="center">5.763</td>
-<td align="center">5.577</td>
-<td align="center">974</td>
+<td align="center">2.49</td>
+<td align="center">3.559</td>
+<td align="center">6.098</td>
+<td align="center">7.973</td>
+<td align="center">983</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
@@ -1208,11 +1165,11 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">2.266</td>
-<td align="center">2.624</td>
-<td align="center">4.865</td>
-<td align="center">4.336</td>
-<td align="center">458</td>
+<td align="center">2.391</td>
+<td align="center">3.467</td>
+<td align="center">5.215</td>
+<td align="center">7.515</td>
+<td align="center">465</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
@@ -1256,11 +1213,19 @@ div.tocify {
 </tr>
 <tr class="odd">
 <td align="center">6</td>
-<td align="center">14.25</td>
-<td align="center">1.389</td>
-<td align="center">32.5</td>
-<td align="center">1.927</td>
-<td align="center">8</td>
+<td align="center">13.33</td>
+<td align="center">3.041</td>
+<td align="center">39.44</td>
+<td align="center">20.91</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">7</td>
+<td align="center">6</td>
+<td align="center">NA</td>
+<td align="center">89</td>
+<td align="center">NA</td>
+<td align="center">1</td>
 </tr>
 </tbody>
 </table>
@@ -1292,19 +1257,19 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">2.043</td>
+<td align="center">2.03</td>
 <td align="center">2.074</td>
-<td align="center">5.075</td>
-<td align="center">4.184</td>
-<td align="center">467</td>
+<td align="center">5.043</td>
+<td align="center">4.19</td>
+<td align="center">470</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">2.461</td>
-<td align="center">4.369</td>
-<td align="center">4.837</td>
-<td align="center">6.289</td>
-<td align="center">306</td>
+<td align="center">2.445</td>
+<td align="center">4.359</td>
+<td align="center">4.805</td>
+<td align="center">6.28</td>
+<td align="center">308</td>
 </tr>
 <tr class="odd">
 <td align="center">2</td>
@@ -1362,6 +1327,22 @@ div.tocify {
 <td align="center">NA</td>
 <td align="center">1</td>
 </tr>
+<tr class="even">
+<td align="center">13</td>
+<td align="center">6</td>
+<td align="center">0</td>
+<td align="center">92</td>
+<td align="center">4.243</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">27</td>
+<td align="center">37</td>
+<td align="center">0</td>
+<td align="center">98.5</td>
+<td align="center">3.536</td>
+<td align="center">2</td>
+</tr>
 </tbody>
 </table>
 </center>
@@ -1392,19 +1373,19 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">1.975</td>
-<td align="center">3.055</td>
-<td align="center">2.652</td>
-<td align="center">3.948</td>
-<td align="center">554</td>
+<td align="center">2.027</td>
+<td align="center">3.386</td>
+<td align="center">2.948</td>
+<td align="center">6.651</td>
+<td align="center">561</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">2.752</td>
-<td align="center">3.21</td>
-<td align="center">9.204</td>
-<td align="center">3.874</td>
-<td align="center">383</td>
+<td align="center">2.849</td>
+<td align="center">3.65</td>
+<td align="center">9.665</td>
+<td align="center">7.472</td>
+<td align="center">385</td>
 </tr>
 <tr class="odd">
 <td align="center">2</td>
@@ -1444,11 +1425,11 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">3.863</td>
-<td align="center">5.195</td>
-<td align="center">7.9</td>
-<td align="center">10.47</td>
-<td align="center">857</td>
+<td align="center">3.923</td>
+<td align="center">5.416</td>
+<td align="center">8.258</td>
+<td align="center">12</td>
+<td align="center">866</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
@@ -1488,11 +1469,11 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">1.863</td>
-<td align="center">3.064</td>
-<td align="center">3.308</td>
-<td align="center">4.334</td>
-<td align="center">688</td>
+<td align="center">1.963</td>
+<td align="center">3.589</td>
+<td align="center">3.812</td>
+<td align="center">8.189</td>
+<td align="center">697</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
@@ -1532,19 +1513,19 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">3.537</td>
-<td align="center">4.867</td>
-<td align="center">8.229</td>
-<td align="center">9.514</td>
-<td align="center">961</td>
+<td align="center">3.519</td>
+<td align="center">4.861</td>
+<td align="center">8.186</td>
+<td align="center">9.507</td>
+<td align="center">966</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">5.303</td>
-<td align="center">3.854</td>
-<td align="center">10.89</td>
-<td align="center">7.706</td>
-<td align="center">142</td>
+<td align="center">5.747</td>
+<td align="center">5.302</td>
+<td align="center">13.21</td>
+<td align="center">15.79</td>
+<td align="center">146</td>
 </tr>
 </tbody>
 </table>
@@ -1576,19 +1557,19 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">3.508</td>
-<td align="center">4.368</td>
-<td align="center">8.281</td>
-<td align="center">9.144</td>
-<td align="center">1073</td>
+<td align="center">3.494</td>
+<td align="center">4.363</td>
+<td align="center">8.323</td>
+<td align="center">9.51</td>
+<td align="center">1079</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">12.93</td>
-<td align="center">8.654</td>
-<td align="center">19</td>
-<td align="center">10.44</td>
-<td align="center">30</td>
+<td align="center">14.18</td>
+<td align="center">10.2</td>
+<td align="center">25.94</td>
+<td align="center">24.45</td>
+<td align="center">33</td>
 </tr>
 </tbody>
 </table>
@@ -1620,19 +1601,19 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">3.534</td>
-<td align="center">4.356</td>
-<td align="center">8.322</td>
-<td align="center">9.127</td>
-<td align="center">1089</td>
+<td align="center">3.517</td>
+<td align="center">4.352</td>
+<td align="center">8.284</td>
+<td align="center">9.123</td>
+<td align="center">1094</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">21.71</td>
-<td align="center">0.914</td>
-<td align="center">28</td>
-<td align="center">3.464</td>
-<td align="center">14</td>
+<td align="center">21.67</td>
+<td align="center">7.562</td>
+<td align="center">42.94</td>
+<td align="center">29</td>
+<td align="center">18</td>
 </tr>
 </tbody>
 </table>
@@ -1644,7 +1625,7 @@ div.tocify {
 <h2><span class="header-section-number">3.2</span> Análise gráfica</h2>
 <p>Análise gráfica do efeito marginal das variáveis em estudo sobre as variáveis de interesse (latências). Para as variáveis numéricas foram produzidos diagramas de dispersão com uma linha de tendência linear. para as variáveis categóricas foram produzidos box-plots para os níveis dos fatores. O último gráfico mostra a relação entre as latências mínima e máxima.</p>
 <hr />
-<p><img src="base1_files/figure-html/unnamed-chunk-100-1.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-100-2.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-100-3.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-100-4.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-100-5.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-100-6.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-100-7.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-100-8.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-100-9.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-100-10.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="base1_files/figure-html/unnamed-chunk-28-1.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-28-2.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-28-3.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-28-4.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-28-5.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-28-6.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-28-7.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-28-8.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-28-9.png" width="960" style="display: block; margin: auto;" /><img src="base1_files/figure-html/unnamed-chunk-28-10.png" width="960" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="correlograma" class="section level2">
@@ -1657,7 +1638,7 @@ div.tocify {
 <li><p>Valores próximos de 0 indicam ausência de correlação.</p></li>
 </ul>
 <p>O correlograma é uma respresentação gráfica da matriz de correlações de Pearson obtida de uma dada matriz numérica.</p>
-<p><img src="base1_files/figure-html/unnamed-chunk-101-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="base1_files/figure-html/unnamed-chunk-29-1.png" width="480" style="display: block; margin: auto;" /></p>
 <hr />
 <center>
 <table>

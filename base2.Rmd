@@ -43,15 +43,21 @@ knitr::opts_knit$set(root.dir = "~/msc/4_latencias/fase2")
 
 # Limpeza
 
-Com base numa análise inicial, foi constatado que a massa de latências está entre 0 e 21 para a mínima e 0 e 30 para a máxima, valores fora desses intervalos são poucos e extremos e cabe a um analista avaliar estes casos.
+Numa primeira análise optamos pela remoção das portas 0156, 06, 237, 1, 15, 05, 6 devido à alta proporção de zeros, isto é, neste conjunto de dados estas portas foram poucas vezes usadas. 
+
+As portas 23, 4, 015, 5, 0, 01 foram analisadas como binárias (foi ou não usada).
+
+---
+
+Ainda com base numa análise inicial, foi constatado que a massa de latências está entre 0 e 15 para a mínima e 0 e 24 para a máxima, valores fora desses intervalos são poucos e extremos e cabe a um analista avaliar estes casos.
 
 ---
 
 Com isto foram geradas duas bases: 
 
- - A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 21 para mínima ou de 40 para máxima. Esta contém 13 casos.
+ - A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 15 para mínima ou de 24 para máxima. Esta contém 28 casos.
  
- - A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 20 e máxima abaixo de 40. Esta contém 1562 casos.
+ - A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 15 e máxima abaixo de 24. Esta contém 1547 casos.
 
 ---
 
@@ -66,6 +72,32 @@ library(tidyverse)
 # Leitura
 dados <- read.csv2('latencias_2_NOVA.csv', header = T, sep = ',')
 
+names(dados) <- c('n', 'code', 'inst', 'extension', 'op0',
+                  'op1', 'op2', 'op3', 'p0156', 'p06', 
+                  'p23', 'p237', 'p4', 'p1', 'p15', 
+                  'p015', 'p5', 'p0', 'p05', 'p01', 
+                  'p6', 'min_lat', 'max_lat', 'count')
+
+
+#---------------------------------------------------------------
+
+# Seleção das variaveis de interesse
+#dados <- select(dados, n, inst, lock, segment,
+#                p0156, p06, p23, p4, p1, p15, p0, p05,
+#                min_lat, max_lat )
+
+#---------------------------------------------------------------
+
+#Transformando portas em binárias
+dados$p23 <- as.factor(ifelse(dados$p23 > 0, 1,0))
+dados$p4 <- as.factor(ifelse(dados$p4 > 0, 1,0))
+dados$p015 <- as.factor(ifelse(dados$p015 > 0, 1,0))
+dados$p5 <- as.factor(ifelse(dados$p5 > 0, 1,0))
+dados$p0 <- as.factor(ifelse(dados$p0 > 0, 1,0))
+dados$p01 <- as.factor(ifelse(dados$p01 > 0, 1,0))
+dados$p237 <- as.factor(ifelse(dados$p237 > 0, 1,0))
+
+
 #---------------------------------------------------------------
 
 # Divisão da base
@@ -73,7 +105,7 @@ dados <- read.csv2('latencias_2_NOVA.csv', header = T, sep = ',')
 # latência mínima entre 0 e 15 &
 # latência máxima entre 0 e 20
 
-indices <- subset(dados, dados$min_lat<=21 & dados$max_lat<=30)$n
+indices <- subset(dados, dados$min_lat<=15 & dados$max_lat<=24)$n
 
 massa <- subset(dados, dados$n %in% indices)
 analista <- subset(dados, !(dados$n %in% indices))
@@ -82,7 +114,7 @@ analista <- subset(dados, !(dados$n %in% indices))
 options(width=80)
 
 DT::datatable(analista, rownames = FALSE,
-              options = list(pageLength = 12
+              options = list(pageLength = 28
                              ))
 
 
@@ -90,7 +122,7 @@ DT::datatable(analista, rownames = FALSE,
 
 ---
 
-As seções seguintes referem-se à análise exploratória da base maior, que continha 1562 observações.
+As seções seguintes referem-se à análise exploratória da base maior, que continha 1547 observações.
 
 ---
 
@@ -103,8 +135,6 @@ Análise de cada uma das variáveis disponíveis na base no que diz respeito a f
 ## Tabelas de frequência {.tabset .tabset-fade}
 
 Frequência absoluta e relativa de cada nível referente a cada uma das variáveis disponíveis.
-
----
 
 ```{r, echo=FALSE}
 # Função para geração de tabela de frequência
@@ -140,26 +170,6 @@ tb_freq2 <- function(vetor){
 
 ---
 
-### p0156
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tb_freq(massa$p0156))
-```
-</center>
-
----
-
-### p06
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tb_freq(massa$p06))
-```
-</center>
-
----
-
 ### p23
 
 <center>
@@ -170,41 +180,11 @@ pander::pander(tb_freq(massa$p23))
 
 ---
 
-### p237
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tb_freq(massa$p237))
-```
-</center>
-
----
-
 ### p4
 
 <center>
 ```{r, echo=FALSE}
 pander::pander(tb_freq(massa$p4))
-```
-</center>
-
----
-
-### p1
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tb_freq(massa$p1))
-```
-</center>
-
----
-
-### p15
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tb_freq(massa$p15))
 ```
 </center>
 
@@ -240,16 +220,6 @@ pander::pander(tb_freq(massa$p0))
 
 ---
 
-### p05
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tb_freq(massa$p05))
-```
-</center>
-
----
-
 ### p01
 
 <center>
@@ -259,17 +229,6 @@ pander::pander(tb_freq(massa$p01))
 </center>
 
 ---
-
-### p6
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tb_freq(massa$p6))
-```
-</center>
-
----
-
 
 ### Latência mínima
 
@@ -332,25 +291,10 @@ dispersao <- function(vetor){
 ```{r, echo=FALSE}
 # Medidas de posição de todas as variáveis
 
-m1 <- rbind(#posicao(massa$lock),
-            #posicao(massa$segment),
-            posicao(massa$p0156),
-            posicao(massa$p06),
-            posicao(massa$p23),
-            #posicao(massa$p237),
-            #posicao(massa$p4),
-            #posicao(massa$p1),
-            #posicao(massa$p15),
-            #posicao(massa$p0),
-            #posicao(massa$p05),
-            posicao(massa$min_lat),
+m1 <- rbind(posicao(massa$min_lat),
             posicao(massa$max_lat))
 
-row.names(m1) <- c(#"lock", 
-  "p0156", "p06", "p23",
-  #"p237", "p4", 
-  #"p1", "p15","p0",
-                   "min_lat","max_lat")
+row.names(m1) <- c("min_lat","max_lat")
 
 pander::pander(m1)
 
@@ -363,25 +307,10 @@ pander::pander(m1)
 
 <center>
 ```{r, echo=FALSE}
-m2 <- rbind(#dispersao(massa$lock),
-            #dispersao(massa$segment),
-            dispersao(massa$p0156),
-            dispersao(massa$p06),
-            dispersao(massa$p23),
-            #dispersao(massa$p237),
-            #dispersao(massa$p4),
-            #dispersao(massa$p1),
-            #dispersao(massa$p15),
-            #dispersao(massa$p0),
-            #dispersao(massa$p05),
-            dispersao(massa$min_lat),
+m2 <- rbind(dispersao(massa$min_lat),
             dispersao(massa$max_lat))
 
-row.names(m2) <- c(#"lock", 
-                   "p0156", "p06", "p23", 
-                   #"p237", "p4", 
-                   #"p1", "p15","p0",
-                   "min_lat","max_lat")
+row.names(m2) <- c("min_lat","max_lat")
 
 pander::pander(m2)
 
@@ -394,43 +323,18 @@ pander::pander(m2)
 
 Gráficos de barras para a frequência de cada nível de cada variável. Traz a mesma informação das já apresentadas tabelas de frequência, porém com um apelo visual.
 
-```{r, echo=FALSE, fig.align='center', fig.width=10, fig.height=10}
+```{r, echo=FALSE, fig.align='center', fig.width=10, fig.height=12}
 # Gráficos de barras para todas as variáveis
-
-b_0156 <- ggplot(data = massa, 
-                 mapping = aes(x = factor(p0156))) + 
-  geom_bar(alpha = 0.7) + theme_bw() +
-  xlab('Porta 0156') + ylab('Contagem')
-
-b_06 <- ggplot(data = massa, 
-               mapping = aes(x = factor(p06))) + 
-  geom_bar(alpha = 0.7) + theme_bw() +
-  xlab('Porta 06') + ylab('Contagem')
 
 b_23 <- ggplot(data = massa, 
                mapping = aes(x = factor(p23))) + 
   geom_bar(alpha = 0.7) + theme_bw() +
   xlab('Porta 23') + ylab('Contagem')
 
-b_237 <- ggplot(data = massa, 
-              mapping = aes(x = factor(237))) + 
-  geom_bar(alpha = 0.7) + theme_bw() +
-  xlab('Porta 237') + ylab('Contagem')
-
 b_4 <- ggplot(data = massa, 
               mapping = aes(x = factor(p4))) + 
   geom_bar(alpha = 0.7) + theme_bw() +
   xlab('Porta 4') + ylab('Contagem')
-
-b_1 <- ggplot(data = massa, 
-              mapping = aes(x = factor(p1))) + 
-  geom_bar(alpha = 0.7) + theme_bw() +
-  xlab('Porta 1') + ylab('Contagem')
-
-b_15 <- ggplot(data = massa, 
-               mapping = aes(x = factor(p15))) + 
-  geom_bar(alpha = 0.7) + theme_bw() +
-  xlab('Porta 15') + ylab('Contagem')
 
 b_015 <- ggplot(data = massa, 
               mapping = aes(x = factor(p015))) + 
@@ -447,20 +351,10 @@ b_0 <- ggplot(data = massa,
   geom_bar(alpha = 0.7) + theme_bw() +
   xlab('Porta 0') + ylab('Contagem')
 
-b_05 <- ggplot(data = massa, 
-               mapping = aes(x = factor(p05))) + 
-  geom_bar(alpha = 0.7) + theme_bw() +
-  xlab('Porta 05') + ylab('Contagem')
-
 b_01 <- ggplot(data = massa, 
                mapping = aes(x = factor(p01))) + 
   geom_bar(alpha = 0.7) + theme_bw() +
   xlab('Porta 01') + ylab('Contagem')
-
-b_6 <- ggplot(data = massa, 
-               mapping = aes(x = factor(p6))) + 
-  geom_bar(alpha = 0.7) + theme_bw() +
-  xlab('Porta 6') + ylab('Contagem')
 
 b_min <- ggplot(data = massa, 
                 mapping = aes(x = factor(min_lat))) + 
@@ -473,13 +367,11 @@ b_max <- ggplot(data = massa,
   xlab('Latência máxima') + ylab('Contagem')
 
 
-ggpubr::ggarrange(b_0156, b_06, b_23, 
-                  b_237, b_4, b_1, 
-                  b_15,b_015, b_5,
-                  b_0,b_05, b_01,b_6,
+ggpubr::ggarrange(b_23, b_4,b_015, b_5,
+                  b_0, b_01,
                   b_min,b_max, 
                   nrow = 4,
-                  ncol = 4)
+                  ncol = 2)
 
 ```
 
@@ -532,26 +424,6 @@ As tabelas para análise bivariada trazem os níveis da variável de interesse, 
 
 ---
 
-### p0156
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tab_bi(massa$p0156))
-```
-</center>
-
----
-
-### p06
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tab_bi(massa$p06))
-```
-</center>
-
----
-
 ### p23
 
 <center>
@@ -562,41 +434,11 @@ pander::pander(tab_bi(massa$p23))
 
 ---
 
-### p237
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tab_bi(massa$p237))
-```
-</center>
-
----
-
 ### p4
 
 <center>
 ```{r, echo=FALSE}
 pander::pander(tab_bi(massa$p4))
-```
-</center>
-
----
-
-### p1
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tab_bi(massa$p1))
-```
-</center>
-
----
-
-### p15
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tab_bi(massa$p15))
 ```
 </center>
 
@@ -632,31 +474,11 @@ pander::pander(tab_bi(massa$p0))
 
 ---
 
-### p05
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tab_bi(massa$p05))
-```
-</center>
-
----
-
 ### p01
 
 <center>
 ```{r, echo=FALSE}
 pander::pander(tab_bi(massa$p01))
-```
-</center>
-
----
-
-### p6
-
-<center>
-```{r, echo=FALSE}
-pander::pander(tab_bi(massa$p6))
 ```
 </center>
 
@@ -743,19 +565,19 @@ box <- function(porta){
 
 # Gráficos de dispersão
 
-scat1("p0156")
-scat1("p06")
-scat1("p23")
-scat1("p237")
-scat1("p4")
-scat1("p1")
-scat1("p15")
-scat1("p015")
-scat1("p5")
-scat1("p0")
-scat1("p05")
-scat1("p01")
-scat1("p6")
+#box("p0156")
+#box("p06")
+box("p23")
+box("p237")
+box("p4")
+#box("p1")
+#box("p15")
+box("p015")
+box("p5")
+box("p0")
+#box("p05")
+box("p01")
+#box("p6")
 #---------------------------------------------------------------
 
 # Uma latencia em função da outra
@@ -816,13 +638,9 @@ O correlograma é uma respresentação gráfica da matriz de correlações de Pe
 ```{r, echo=FALSE}
 # Correlograma para numéricas
 
-numericas <- select(massa, 
-                    p0156, p06, p23, p237,
-                    p4, p1, p15, p015, p5,
-                    p0, p05, p01, p6,
-                    min_lat, max_lat)
+numericas <- select(massa,min_lat, max_lat)
 
-names(numericas)[c(14,15)] <- c('min', 'max')
+#names(numericas)[c(14,15)] <- c('min', 'max')
 
 cor1 <- cor(numericas, method = 'pearson')
 

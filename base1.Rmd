@@ -44,23 +44,21 @@ knitr::opts_knit$set(root.dir = "~/msc/4_latencias/fase2")
 # Limpeza
 
 
-Numa primeira análise optamos pela remoção das portas 015, 5, 01 e 6 devido à alta proporção de zeros, isto é, neste conjunto de dados estas portas foram poucas vezes usadas. Foram retiradas também as colunas set_rex e mem_xchg. As portas 0, 237, 4, 1 e 15 foram analisadas como binárias (foi ou não usada). As demais portas não sofreram tratamentos.
+Numa primeira análise optamos pela remoção das portas 05, 015, 5, 01 e 6 devido à alta proporção de zeros, isto é, neste conjunto de dados estas portas foram poucas vezes usadas. Foram retiradas também as colunas set_rex e mem_xchg. 
+
+As portas 0, 237, 4, 1 e 15 foram analisadas como binárias (foi ou não usada). As demais portas não sofreram tratamentos.
 
 ---
 
-Ainda com base numa análise inicial, foi constatado que a massa de latências está entre 0 e 20 para a mínima e 0 e 40 para a máxima, valores fora desses intervalos são poucos e extremos e cabe a um analista avaliar estes casos.
+Ainda com base numa análise inicial, foi constatado que a massa de latências está entre 0 e 20 para a mínima e 0 e 40 para a máxima, valores fora desses intervalos são poucos e extremos e cabe a um analista avaliar estes casos. 
 
 ---
 
 Com isto foram geradas duas bases: 
 
- - A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 20 para mínima e de 40 para máxima. Esta contém 24 casos.
+ - A primeira, para análise manual por um especialista no assunto. Contemplava valores de latência acima de 20 para mínima e de 40 para máxima. Esta contém 20 casos.
  
- - A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 20 ou máxima abaixo de 40. Esta contém 1103 casos.
- 
----
-
-Com este subset das bases não havia informação para análise da variável segment e nem da porta 05, portanto elas não foram analisadas.
+ - A segunda, para análise estatística. Contemplava valores de latência mínima abaixo de 20 ou máxima abaixo de 40. As instruções DIV e IDIV, apesar de estar fora do critério mencionado, foram reincluídas à maior base devido à sua importância. Sendo assim, a base para análise em massa continha 1112 instruções.
 
 ---
 
@@ -73,14 +71,23 @@ library(tidyverse)
 #---------------------------------------------------------------
 
 # Leitura
-dados <- read.csv2('latencias_1.csv', header = T, sep = ',')
+#dados <- read.csv2('latencias_1.csv', header = T, sep = ',')
+
+dados <- read.csv2('latencias_1_NOVA.csv', header = T, sep = ',')
+
+names(dados) <- c('n', 'code', 'inst', 'op0', 'op1', 'op2', 
+                  'lock', 'set_rex', 'segment', 'mem_xchg', 
+                  'p0156', 'p06', 'p23', 'p237', 'p4', 'p1', 
+                  'p15', 'p015', 'p5', 'p0', 'p05', 'p01', 
+                  'p6', 'min_lat', 'max_lat', 'count')
+
 
 #---------------------------------------------------------------
 
 # Seleção das variaveis de interesse
 dados <- select(dados, n, inst, lock, segment,
                 p0156, p06, p23,p237, p4, p1, p15, p0, p05,
-                min_lat, max_lat )
+                min_lat, max_lat, count)
 
 #---------------------------------------------------------------
 
@@ -104,7 +111,10 @@ dados$segment <- ifelse(dados$segment > 0, 1,0)
 # latência mínima entre 0 e 25 &
 # latência máxima entre 0 e 45
 
-indices <- subset(dados, dados$min_lat<=25 & dados$max_lat<=45)$n
+indices <- subset(dados, dados$min_lat<=25 & 
+                    dados$max_lat<=45 | 
+                    dados$inst == 'DIV' | 
+                    dados$inst == 'IDIV')$n
 
 massa <- subset(dados, dados$n %in% indices)
 analista <- subset(dados, !(dados$n %in% indices))
@@ -112,8 +122,8 @@ analista <- subset(dados, !(dados$n %in% indices))
 options(width=80)
 
 DT::datatable(analista, rownames = FALSE,
-              options = list(pageLength = 12
-                             ))
+              options = list(pageLength = 20
+              ))
 
 
 ```

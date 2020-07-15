@@ -20,10 +20,6 @@ navbar:
       icon: fa-bar-chart
       href: base2.html
 
-    - text: "Reanálise Base 2"
-      icon: fa-bar-chart
-      href: base2_reanalise.html
-
 
   right:
     - text: "Lineu A.C.F"
